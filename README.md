@@ -9,11 +9,17 @@ Setup instructions and scripts to setup Sdrplay SdrConnect environment for ham r
   * freeDV
   * js8call
   * gridtracker
+
 * Virtual Audio
+
   Path and components used to pass digital audio from a source to a destination.
+
 * Virtual Comm Port
+
   Path and components used to pass digital data bi-directional between two applications.
+
 * SoCat
+
   Application used to bi-directionally pass data from one exposed /dev/ttysXXX device to another /dev/ttysYYY.
 * SDRconnect
   Application from SDRplay used to control the RSPx SD hardware.
@@ -42,10 +48,11 @@ Setup instructions and scripts to setup Sdrplay SdrConnect environment for ham r
 
 ## Startup Procedure
 ### Core SDRconnect, VirtualComPort, RigCtld, FLRig
-* open Terminal and run buildVirtualComPort.sh
+* open Terminal and run runSDR.sh
   Take note of SDRCATPORT and RIGCTLPORT.  These are required later...
 
-* open Launcher and Start SDRconnect
+#### First time config
+* SDRconnect will be started by runSDR.sh
   * do not click to start SDR
   * under Tool(Wrench), select Rig Control
   * make sure CAT Emulator is ON
@@ -65,6 +72,10 @@ Setup instructions and scripts to setup Sdrplay SdrConnect environment for ham r
         * click init
         * if this fails try init again
   * check that SDRconnect and flrig have the same frequency
+
+#### Subsequent Startup
+* click Green Arrow to start SDR
+* open Launcher and Start flrig
 
 ### WSJT-X
 wsjt-x is a program that implements most of the Joe Taylor et al radio modem protocols.  Popular ones are FT8, WSPR (called Whisper).
