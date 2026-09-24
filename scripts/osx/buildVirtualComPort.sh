@@ -11,9 +11,22 @@ DEVICESDR=
 DEVICESDRCOMPORT=
 
 # build the pty's 
+# make sure socat is running
+
+if pgrep -x "socat" > /dev/null
+then
+    echo "socat running"
+else
+    echo "socat not running"
+    pkill socat
+    pkill rigctld
+    rm -rf ~/.flrig
+    rm ${LINKDIR}/ttySDR ${LINKDIR}/ttySDRCOMPORT
+fi
+
 if [ -c "${LINKDIR}/ttySDR" ]
 then
-    echo "${LINKDIR}/ttySDR already exists"
+    # echo "${LINKDIR}/ttySDR already exists"
     DEVICESDR=`realpath ${LINKDIR}/ttySDR`
     DEVICECOMPORT=`realpath ${LINKDIR}/ttySDRCOMPORT`
     echo "SDRCATPORT ${DEVICESDR} RIGCTLPORT ${DEVICECOMPORT}"
@@ -43,6 +56,7 @@ if pgrep "rigctld" > /dev/null
 then
     echo "rigctld running"
 else
+    echo "starting rigctld"
     rigctld -r ${LINKDIR}/ttySDRCOMPORT -s 57600 -m 2014 &
 fi
 
